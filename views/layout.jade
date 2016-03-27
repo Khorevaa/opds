@@ -16,7 +16,7 @@ html
       ul.nav.navbar-nav.navbar-right
         if user
           li
-            a(href='', onclick='clickFunc()') Выйти
+            button(class='btn btn-primary' href='', onclick='clickFunc()') Выйти
           script.
             var clickFunc = function () {
               $('body').append('<form id="submitme" method="POST" action="/logout"></form>');
@@ -25,5 +25,5 @@ html
             }
         else
           li
-            a(href='/login') Войти
+            a(class='btn btn-primary' href='/login') Войти
     block content
