@@ -1,0 +1,22 @@
+{
+  "port": 3000,
+  "mongoose": {
+    "uri": "mongodb://admin:nimda@ds013589.mlab.com:13589/opds",
+    "options": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      }
+    }
+  },
+  "session": {
+    "secret": "TopSecretPhrase",
+    "key": "KeySid",
+    "cookie": {
+      "path": "/",
+      "httpOnly": true,
+      "maxAge": null
+    }
+  }
+}

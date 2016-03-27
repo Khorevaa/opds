@@ -1,9 +1,11 @@
-var express = require('express');
-var router = express.Router();
+var checkAuth = require('.././middleware/checkAuth');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'OPDS Builder' });
-});
+module.exports = function (app) {
+  app.get('/', require('./frontpage').get);
 
-module.exports = router;
+  app.get('/login', require('./login').get);
+  app.post('/login', require('./login').post);
+  app.post('/logout', require('./logout').post);
+
+  app.get('/cabinet', checkAuth, require('./cabinet').get);
+};
