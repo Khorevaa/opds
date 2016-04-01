@@ -8,11 +8,15 @@ block content
             .form-group
                 label.col-lg-2.control-label(for='input-username') Имя
                 .col-lg-10
-                    input#input-username.form-control(name='username', value='name', type='text', placeholder='Имя' required)
+                    input#input-username.form-control(name='username', value='', type='text', placeholder='Имя' required)
+            .form-group
+                label.col-lg-2.control-label(for='input-email') Электронный адрес
+                .col-lg-10
+                    input#input-email.form-control(name='email', value='', type='text', placeholder='name@smth.com')
             .form-group
                 label.col-lg-2.control-label(for='input-password') Пароль
                 .col-lg-10
-                    input#input-password.form-control(name='password', value='password', type='password', placeholder='Пароль' required)
+                    input#input-password.form-control(name='password', value='', type='password', placeholder='Пароль' required)
             .form-group
                 .col-lg-offset-2.col-lg-10
                     button.btn.btn-primary(type='submit', data-loading-text='Отправляю...') Войти

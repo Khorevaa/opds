@@ -9,9 +9,10 @@ exports.get = function (req, res) {
 
 exports.post = function (req, res, next) {
     var username = req.body.username;
+    var email = req.body.email;
     var password = req.body.password;
 
-    User.authorize(username, password, function (err, user) {
+    User.authorize(username, email, password, function (err, user) {
         if (err) {
             if (err instanceof AuthError) {
                 return next(new HttpError(403, err.message));
