@@ -3,12 +3,8 @@ extends layout
 block content
     h1= title
     h2 Войдите или зарегистрируйтесь!
-    p Если вы еще не регистрировались логин и пароль будут созданы впервые.
-        form.form-horizontal.login-form(name='login-form')
-            .form-group
-                label.col-lg-2.control-label(for='input-username') Имя
-                .col-lg-10
-                    input#input-username.form-control(name='username', value='', type='text', placeholder='Имя' required)
+    p Если вы еще не регистрировались логин (email) и пароль будут созданы впервые.
+        form.form-horizontal.login-form(name='login-form' action='/login', method='post')
             .form-group
                 label.col-lg-2.control-label(for='input-email') Электронный адрес
                 .col-lg-10
@@ -21,6 +17,13 @@ block content
                 .col-lg-offset-2.col-lg-10
                     button.btn.btn-primary(type='submit', data-loading-text='Отправляю...') Войти
                     span.help-block.error
+        .social-login
+            a(href='/auth/facebook')
+                i.fa.fa-facebook.fa-lg
+                |         Login in with facebook
+            a(href='/auth/google')
+                i.fa.fa-google-plus.fa-lg
+                |         log in with Google
         script.
             $(document.forms['login-form']).on('submit', function () {
                 var form = $(this);

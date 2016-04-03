@@ -1,5 +1,6 @@
 {
   "port": 3000,
+  "cryptKey": "VeryStrangeKey",
   "mongoose": {
     "uri": "mongodb://admin:nimda@ds013589.mlab.com:13589/opds",
     "options": {
@@ -18,5 +19,15 @@
       "httpOnly": true,
       "maxAge": null
     }
+  },
+  "facebookAuth": {
+    "clientID": "940328762688843",
+    "clientSecret": "d8f29b2b898a86ef4d5113eabcd299e5",
+    "callbackURL": "http://localhost:3000/auth/facebook/callback"
+  },
+  "googleAuth": {
+    "clientID": "624577643382-g6h623lj8t5arpnni7en5od8sr6cu1ok.apps.googleusercontent.com",
+    "clientSecret": "7wZKvmEed-aKXWhdZZtiprG4",
+    "callbackURL": "http://localhost:3000/auth/google/callback"
   }
 }
