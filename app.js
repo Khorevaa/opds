@@ -35,28 +35,14 @@ app.use(passport.session());
 app.use(flash());
 
 require('./middleware/passport')(passport);
+app.use(function (req, res, next) {
+  res.locals.user = req.user;
+  next();
+});
 
 require('./routes')(app, passport);
 
 app.use(express.static(path.join(__dirname, 'public')));
-
-/*
-app.use(function (err, req, res, next) {
-  if (typeof err == 'number') {
-    err = new HttpError(err);
-  }
-  if (err instanceof HttpError) {
-    res.sendHttpError(err);
-  } else {
-    if (app.get('env') == 'development') {
-      express.errorHandler()(err, req, res, next);
-    } else {
-      log.error(err);
-      err = new HttpError(500);
-      res.sendHttpError(err);
-    }
-  }
- });*/
 
 var server = http.createServer(app);
 server.listen(config.get('port'), function () {
