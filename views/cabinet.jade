@@ -3,3 +3,21 @@ extends layout
 block content
     h1= title
     p Добро пожаловать, #{user}
+    button#getBooksBtn(type='button' ng-click="getNewBooks()") Получить список новых книг!
+    br
+    br
+    p Сегодня: {{today | date:'dd/MM/yyyy'}}
+    br
+    p {{summary}}
+    br
+    br
+    table#booksTable
+        thead
+            th {{newBooksHead.title}}
+            th {{newBooksHead.author}}
+            th {{newBooksHead.description}}
+        tbody(ng-repeat='book in newBooks')
+            tr
+                td {{book.title}}
+                td {{book.author}}
+                td {{book.description}}

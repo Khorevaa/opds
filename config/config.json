@@ -23,7 +23,12 @@
   "facebookAuth": {
     "clientID": "940328762688843",
     "clientSecret": "d8f29b2b898a86ef4d5113eabcd299e5",
-    "callbackURL": "http://opds.herokuapp.com/auth/facebook/callback"
+    "callbackURL": "http://localhost:3000/auth/facebook/callback"
+  },
+  "facebookAuth2": {
+    "clientID": "1205018249517319",
+    "clientSecret": "785c7b97ea3c6a0557dd552e5c302aaa",
+    "callbackURL": "http://localhost:3000/auth/facebook/callback"
   },
   "googleAuth": {
     "clientID": "624577643382-g6h623lj8t5arpnni7en5od8sr6cu1ok.apps.googleusercontent.com",

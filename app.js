@@ -23,6 +23,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use('jquery', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
 
 app.use(session({
   secret: config.get('session:secret'),
@@ -43,6 +44,7 @@ app.use(function (req, res, next) {
 require('./routes')(app, passport);
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'middleware')));
 
 var server = http.createServer(app);
 server.listen(config.get('port'), function () {

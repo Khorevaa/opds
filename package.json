@@ -16,6 +16,7 @@
     "express": "latest",
     "express-session": "^1.13.0",
     "jade": "~1.11.0",
+    "jquery": "^2.2.3",
     "mongodb": "^2.1.11",
     "mongoose": "^4.4.10",
     "morgan": "^1.7.0",

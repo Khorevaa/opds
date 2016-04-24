@@ -1,11 +1,13 @@
 doctype html
-html
+html(lang="en")
   head
     link(rel='stylesheet', href='/vendor/bower_components/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='/vendor/bower_components/jquery/dist/jquery.js')
     script(src='/vendor/bower_components/bootstrap/dist/js/bootstrap.js')
-  body
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js')
+    script(src='/controllers.js')
+  body(ng-app='angularApp' ng-controller="angCtrl")
     nav.navbar.navbar-default(role='navigation')
       ul.nav.navbar-nav
         li
