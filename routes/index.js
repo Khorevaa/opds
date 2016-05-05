@@ -1,7 +1,4 @@
 var User = require('.././models/user');
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-var request = require('request');
-var fs = require('fs');
 
 module.exports = function (app, passport) {
   app.get('/', function (req, res) {
