@@ -23,7 +23,7 @@
   "facebookAuth": {
     "clientID": "940328762688843",
     "clientSecret": "d8f29b2b898a86ef4d5113eabcd299e5",
-    "callbackURL": "http://localhost:3000/auth/facebook/callback"
+    "callbackURL": "http://opds.herokuapp.com/auth/facebook/callback"
   },
   "facebookAuthDev": {
     "clientID": "1205018249517319",
