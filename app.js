@@ -10,6 +10,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
+var schedule = require('node-schedule');
 
 var app = express();
 app.set('port', config.get('port'));
@@ -45,6 +46,23 @@ require('./routes')(app, passport);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'middleware')));
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', "*");
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+});
+
+var getNewBooks = require('./middleware/newbooks');
+var rule = new schedule.RecurrenceRule();
+
+rule.dayOfWeek = [0, new schedule.Range(1, 6)];
+rule.hour = 12;
+rule.minute = 0;
+
+schedule.scheduleJob(rule, function () {
+  getNewBooks();
+});
 
 var server = http.createServer(app);
 server.listen(config.get('port'), function () {

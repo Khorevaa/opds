@@ -65,7 +65,6 @@ module.exports = function (passport) {
                     if (user) return done(null, user);
                     else {
                         var newUser = new User();
-                        console.log('profile.id = ' + profile.id + ', givenName = ' + profile.name.givenName);
                         newUser.facebook.id = profile.id;
                         newUser.facebook.token = accessToken;
                         newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
@@ -90,11 +89,9 @@ module.exports = function (passport) {
         function (accessToken, refreshToken, profile, done) {
             process.nextTick(function () {
                 User.findOne({'google.id': profile.id}, function (err, user) {
-                    console.log(profile.toJSON);
                     if (err) return done(err);
                     if (user) return done(null, user);
                     else {
-                        console.log(profile.id);
                         var newUser = new User();
                         newUser.google.id = profile.id;
                         newUser.google.token = accessToken;

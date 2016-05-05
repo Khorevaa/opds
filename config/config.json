@@ -25,7 +25,7 @@
     "clientSecret": "d8f29b2b898a86ef4d5113eabcd299e5",
     "callbackURL": "http://localhost:3000/auth/facebook/callback"
   },
-  "facebookAuth2": {
+  "facebookAuthDev": {
     "clientID": "1205018249517319",
     "clientSecret": "785c7b97ea3c6a0557dd552e5c302aaa",
     "callbackURL": "http://localhost:3000/auth/facebook/callback"

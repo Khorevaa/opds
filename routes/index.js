@@ -1,4 +1,7 @@
 var User = require('.././models/user');
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var request = require('request');
+var fs = require('fs');
 
 module.exports = function (app, passport) {
   app.get('/', function (req, res) {
@@ -23,7 +26,7 @@ module.exports = function (app, passport) {
   app.get('/cabinet', isLoggedIn, function (req, res) {
     res.render('cabinet', {
       title: 'Ваш кабинет',
-      user: req.user.facebook.name || req.user.google.name || req.user.local.username.split("@")[0] || 'anonimus!'
+      user: req.user.facebook.name || req.user.google.name || req.user.local.username.split("@")[0] || 'anonymous!'
     });
   });
 
@@ -52,14 +55,3 @@ function isLoggedIn(req, res, next) {
 
   res.redirect('/login');
 };
-
-function displayName(req) {
-  console.log(req.user);
-  if (req.user.local) return req.user.local.username;
-  if (req.user.facebook.name != '') {
-    var name = req.user.facebook.name;
-    console.log('name = ' + name);
-    return name;
-  }
-  if (req.user.google) return req.user.google.name;
-}
