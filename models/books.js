@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var bookSchema = mongoose.Schema({
     bookid: String,
-    updated: String,
+    updated: Date,
     title: String,
     author: String,
     language: String,
