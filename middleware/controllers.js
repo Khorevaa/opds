@@ -9,7 +9,7 @@ angularApp.controller('angCtrl', function ($scope, $http) {
         };
 
         var newBooks = [];
-        var url = 'http://localhost:3000/getBooksFromDB/';
+        var url = '/getBooksFromDB';
         $http.get(url)
             .success(function (data, status, headers, config) {
 
