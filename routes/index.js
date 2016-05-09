@@ -1,4 +1,5 @@
 var User = require('.././models/user');
+var getBooksFromDB = require('.././middleware/getbooksfromdb');
 
 module.exports = function (app, passport) {
   app.get('/', function (req, res) {
@@ -19,6 +20,14 @@ module.exports = function (app, passport) {
     failureRedirect: '/login',
     failureFlash: true
   }));
+
+
+  app.get('/getBooksFromDB', function (req, res) {
+    getBooksFromDB(function (books) {
+      res.send(books);
+    });
+  });
+
 
   app.get('/cabinet', isLoggedIn, function (req, res) {
     res.render('cabinet', {
@@ -52,3 +61,4 @@ function isLoggedIn(req, res, next) {
 
   res.redirect('/login');
 };
+

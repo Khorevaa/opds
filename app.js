@@ -10,7 +10,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-var schedule = require('node-schedule');
+var cronJob = require('cron').CronJob;
 
 var app = express();
 app.set('port', config.get('port'));
@@ -54,15 +54,15 @@ app.use(function (req, res, next) {
 });
 
 var getNewBooks = require('./middleware/newbooks');
-var rule = new schedule.RecurrenceRule();
 
-rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-rule.hour = 12;
-rule.minute = 0;
-
-schedule.scheduleJob(rule, function () {
-  getNewBooks();
+var job = new cronJob({
+  cronTime: '00 00 12 * * 0-6',
+  onTick: function () {
+    getNewBooks();
+  },
+  start: false
 });
+job.start();
 
 var server = http.createServer(app);
 server.listen(config.get('port'), function () {
