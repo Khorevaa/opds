@@ -73,6 +73,10 @@ a {
   background-color: #DF4A32;
 }
 
+#booksTable {
+  box-sizing: border-box;
+}
+
 #booksTable th, tr, td {
   border: 1px solid black;
 }
@@ -82,4 +86,5 @@ a {
   font-family: Tahoma;
   font-weight: bold;
 }
+
 /*# sourceMappingURL=style.css.map */

@@ -1,24 +1,40 @@
 extends layout
 
 block content
-    h1= title
-    p Добро пожаловать, #{user}
-    button#getBooksBtn(type='button' ng-click="getNewBooks()") Получить список всех книг из базы!
+    #sidebar.col-xs-6.col-sm-4.sidebar-offcanvas-left
+        h1= title
+        p Добро пожаловать, #{user}
+        button#getBooksBtn(type='button' class='btn btn-success btn-md' ng-click="getNewBooks()") Получить список всех книг из базы! <br/> Будут показаны первые 100
+        br
+        br
+        p Сегодня: {{today | date:'dd/MM/yyyy'}}
+        br
+        br
+        p {{summary}}
+    #sidebar.col-xs-6.col-sm-4.sidebar-offcanvas-right
+        h3.text-center Фильтр книг по категориям
+        .list-group
+            .list-group-item.text-center
+                form
+                    input.form-control(type='text', placeholder='Search...', ng-model='searchCategory')
+        h3.text-center Фильтр книг по авторам
+            .list-group
+                .list-group-item.text-center
+                    form
+                        input.form-control(type='text', placeholder='Search...', ng-model='searchAuthor')
     br
     br
-    p Сегодня: {{today | date:'dd/MM/yyyy'}}
-    br
-    p {{summary}}
-    br
-    br
-    table#booksTable
+    table#booksTable.col-lg-12
         thead
+            th {{newBooksHead.updated}}
             th {{newBooksHead.title}}
             th {{newBooksHead.author}}
             th {{newBooksHead.category}}
             th {{newBooksHead.description}}
-        tbody(ng-repeat='book in newBooks')
+        tbody(ng-repeat='book in newBooks | orderBy: "updated" : true | filter: {category: searchCategory} |' +
+        ' filter: {author: searchAuthor} | limitTo: 100 ')
             tr
+                td {{book.updated}}
                 td {{book.title}}
                 td {{book.author}}
                 td {{book.category}}
