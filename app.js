@@ -59,8 +59,7 @@ var job = new cronJob({
   onTick: function () {
     getNewBooks();
   },
-  start: false,
-  timeZone: 'Europe/London'
+  start: false
 });
 job.start();
 
