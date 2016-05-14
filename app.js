@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
 var getNewBooks = require('./middleware/newbooks');
 
 var job = new cronJob({
-  cronTime: '00 00 12 * * 0-6',
+  cronTime: '02 02 12 * * 0-6',
   onTick: function () {
     getNewBooks();
   },
