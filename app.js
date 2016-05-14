@@ -2,7 +2,6 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var config = require('./config');
-var HttpError = require('./error').HttpError;
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
@@ -60,7 +59,8 @@ var job = new cronJob({
   onTick: function () {
     getNewBooks();
   },
-  start: false
+  start: false,
+  timeZone: 'Europe/London'
 });
 job.start();
 
