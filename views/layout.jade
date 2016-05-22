@@ -6,6 +6,7 @@ html(lang="en")
     script(src='/vendor/bower_components/jquery/dist/jquery.js')
     script(src='/vendor/bower_components/bootstrap/dist/js/bootstrap.js')
     script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.5/angular-sanitize.min.js')
     script(src='/controllers.js')
   body(ng-app='angularApp' ng-controller="angCtrl")
     nav.navbar.navbar-default(role='navigation')
@@ -18,7 +19,7 @@ html(lang="en")
       ul.nav.navbar-nav.navbar-right
         if user
           li
-            button(class='btn btn-primary' href='', onclick='clickFunc()') Выйти
+            button(class='btn-custom btn-primary' href='', onclick='clickFunc()') Выйти
           script.
             var clickFunc = function () {
               $('body').append('<form id="submitme" method="POST" action="/logout"></form>');
@@ -27,5 +28,5 @@ html(lang="en")
             }
         else
           li
-            a(class='btn btn-primary' href='/login') Войти
+            a(class='btn-custom btn-primary' href='/login') Войти
     block content

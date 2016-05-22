@@ -1,27 +1,43 @@
 extends layout
 
 block content
-    #sidebar.col-xs-6.col-sm-4.sidebar-offcanvas-left
+    .btnDiv.col-xs-4.col-sm-4.sidebar-offcanvas-left
         h1= title
         p Добро пожаловать, #{user}
-        button#getBooksBtn(type='button' class='btn btn-success btn-md' ng-click="getNewBooks()") Получить список всех книг из базы! <br/> Будут показаны первые 100
+        br
         br
         br
         p Сегодня: {{today | date:'dd/MM/yyyy'}}
         br
-        br
         p {{summary}}
-    #sidebar.col-xs-6.col-sm-4.sidebar-offcanvas-right
-        h3.text-center Фильтр книг по категориям
+    .btnDiv.col-xs-4.col-sm-4.sidebar-offcanvas-centr
+        h3.text-center Поиск книг в базе
+        .container
+            .row
+                .col-xs-6
+                    .input-group
+                        .input-group-btn.search-panel
+                            select.SelectField.form-control(ng-model='selectedField', ng-options='field.name for field in fields')
+                                option(value="" data-hidden="true" class="ddl-title") Поле поиска
+                        input.form-control(type='text', placeholder='Поиск...', ng-model='searchValue')
+                        span.input-group-btn
+                            button.btn.btn-default(type='button' ng-click="searchBooks(searchValue, selectedField.value)")
+                                span.glyphicon.glyphicon-search
+        h3.text-center или
+        .row
+            .col-md-12
+                button#getBooksBtn(class='btn btn-info' ng-click="getNewBooks()") Получить список последних 100 книг из базы
+    .btnDiv.col-xs-4.col-sm-4.sidebar-offcanvas-right
+        h4.text-center Фильтр книг по категориям
         .list-group
             .list-group-item.text-center
                 form
-                    input.form-control(type='text', placeholder='Search...', ng-model='searchCategory')
-        h3.text-center Фильтр книг по авторам
+                    input.form-control(type='text', placeholder='Фильтр...', ng-model='searchCategory')
+        h4.text-center Фильтр книг по авторам
             .list-group
                 .list-group-item.text-center
                     form
-                        input.form-control(type='text', placeholder='Search...', ng-model='searchAuthor')
+                        input.form-control(type='text', placeholder='Фильтр...', ng-model='searchAuthor')
     br
     br
     table#booksTable.col-lg-12
@@ -38,4 +54,5 @@ block content
                 td {{book.title}}
                 td {{book.author}}
                 td {{book.category}}
-                td {{book.description}}
+                td
+                    div(ng-bind-html='book.description')

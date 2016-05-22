@@ -1,5 +1,6 @@
 var User = require('.././models/user');
 var getBooksFromDB = require('.././middleware/getbooksfromdb');
+var searchBooksInDB = require('.././middleware/searchBooksInDB');
 
 module.exports = function (app, passport) {
   app.get('/', function (req, res) {
@@ -24,6 +25,12 @@ module.exports = function (app, passport) {
 
   app.get('/getBooksFromDB', function (req, res) {
     getBooksFromDB(function (books) {
+      res.send(books);
+    });
+  });
+
+  app.get('/searchBooksInDB', function (req, res) {
+    searchBooksInDB(req.param('searchValue'), req.param('selectedField'), function (books) {
       res.send(books);
     });
   });
