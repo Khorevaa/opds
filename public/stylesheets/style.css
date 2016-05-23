@@ -27,7 +27,7 @@ a {
 }
 
 .form-control {
-  padding: 0;
+  padding: 0 4px;
 }
 
 option {
