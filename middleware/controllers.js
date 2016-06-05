@@ -64,7 +64,13 @@ angularApp.controller('angCtrl', function ($scope, $http, $window) {
 
     $scope.downloadBook = function (link) {
 
-        var destination = prompt('Введите путь к директории для сохранения файла', '') + '\\';
+        var userDirectory = prompt('Введите путь к директории для сохранения файла', '');
+        if (!userDirectory) {
+            alert('Сохранение отменено или введен пустой путь');
+            return;
+        }
+
+        var destination = userDirectory + '\\';
 
         var url = '/downloadBook';
         var inputData = {
