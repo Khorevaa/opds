@@ -1,6 +1,6 @@
-var angularApp = angular.module('angularApp', ['ngSanitize']);
+var angularApp = angular.module('angularApp', ['ngSanitize', 'angular-loading-bar']);
 
-angularApp.controller('angCtrl', function ($scope, $http) {
+angularApp.controller('angCtrl', function ($scope, $http, $window) {
 
     $scope.getNewBooks = function () {
         $scope.newBooksHead = {
@@ -60,9 +60,34 @@ angularApp.controller('angCtrl', function ($scope, $http) {
             }).error(function () {
             alert('error!');
         });
-        ;
+    }
 
+    $scope.downloadBook = function (link) {
 
+        var destination = prompt('Введите путь к директории для сохранения файла', '') + '\\';
+
+        var url = '/downloadBook';
+        var inputData = {
+            link: 'http://flibusta.is/b/' + link + '/txt',
+            destination: destination
+        };
+        var config = {
+            params: inputData,
+            headers: {'Accept': 'application/json'}
+        };
+        $http.get(url, config)
+            .success(function (data) {
+                if (data != '') {
+                    alert('Книга загружена! \nВы можете найти файл по адресу: ' + data);
+                }
+
+            }).error(function () {
+            alert('error!');
+        });
+    }
+
+    $scope.redirectToFlibusta = function (link) {
+        $window.open('http://flibusta.is/b/' + link);
     }
 
     $scope.fields = [

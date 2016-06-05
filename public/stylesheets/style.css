@@ -122,4 +122,12 @@ label {
   font-weight: bold;
 }
 
+#btnLink {
+  margin: 7px;
+}
+
+#btnDownload {
+  margin: 5px;
+}
+
 /*# sourceMappingURL=style.css.map */

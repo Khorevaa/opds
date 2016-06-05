@@ -1,6 +1,7 @@
 var User = require('.././models/user');
 var getBooksFromDB = require('.././middleware/getbooksfromdb');
 var searchBooksInDB = require('.././middleware/searchBooksInDB');
+var downloadBook = require('.././middleware/downloadBook');
 
 module.exports = function (app, passport) {
   app.get('/', function (req, res) {
@@ -30,11 +31,16 @@ module.exports = function (app, passport) {
   });
 
   app.get('/searchBooksInDB', function (req, res) {
-    searchBooksInDB(req.param('searchValue'), req.param('selectedField'), function (books) {
+    searchBooksInDB(req.query['searchValue'], req.query['selectedField'], function (books) {
       res.send(books);
     });
   });
 
+  app.get('/downloadBook', function (req, res) {
+    downloadBook(req.query['link'], req.query['destination'], function (fullFilePath) {
+      res.send(fullFilePath);
+    })
+  })
 
   app.get('/cabinet', isLoggedIn, function (req, res) {
     res.render('cabinet', {

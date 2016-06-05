@@ -46,8 +46,9 @@ block content
             th {{newBooksHead.author}}
             th {{newBooksHead.category}}
             th {{newBooksHead.description}}
+            th
         tbody(ng-repeat='book in newBooks | orderBy: "updated" : true | filter: {category: searchCategory} |' +
-        ' filter: {author: searchAuthor} | limitTo: 100 ')
+        ' filter: {author: searchAuthor} | limitTo: 100')
             tr
                 td {{book.updated | date:'mediumDate'}}
                 td {{book.title}}
@@ -55,3 +56,10 @@ block content
                 td {{book.category}}
                 td
                     div(ng-bind-html='book.description')
+                th
+                    a#btnLink.btn.btn-info.btn-sm(type='button' ng-click="redirectToFlibusta(book.bookid)")
+                        span.glyphicon.glyphicon-link
+                        |  Link
+                    a#btnDownload.btn.btn-success.btn-sm(type='button' ng-click="downloadBook(book.bookid)")
+                        span.glyphicon.glyphicon-save
+                        |  Save
