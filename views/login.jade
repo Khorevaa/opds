@@ -2,28 +2,28 @@ extends layout
 
 block content
     h1= title
-    h2 Войдите или зарегистрируйтесь!
-    p Если вы еще не регистрировались логин (email) и пароль будут созданы впервые.
+    h2 {{ 'Log_in_or_Sign_in' | translate }}!
+    p {{ 'First_login_message' | translate }}.
         form.form-horizontal.login-form(name='login-form' action='/login', method='post')
             .form-group
-                label.col-lg-2.control-label(for='input-email') Электронный адрес
+                label.col-lg-2.control-label(for='input-email') {{ 'Email' | translate }}
                 .col-lg-10
                     input#input-email.form-control(name='email', value='', type='text', placeholder='name@smth.com')
             .form-group
-                label.col-lg-2.control-label(for='input-password') Пароль
+                label.col-lg-2.control-label(for='input-password') {{ 'Password' | translate }}
                 .col-lg-10
                     input#input-password.form-control(name='password', value='', type='password', placeholder='Пароль' required)
             .form-group
                 .col-lg-offset-2.col-lg-10
-                    button.btn.btn-primary(type='submit', data-loading-text='Отправляю...') Войти
+                    button.btn.btn-primary(type='submit', data-loading-text='Отправляю...') {{ 'Log_in' | translate }}
                     span.help-block.error
         .social-login
             a(href='/auth/facebook')
                 i.fa.fa-facebook.fa-lg
-                |         Login in with facebook
+                |         {{ 'Login_in_with' | translate }} facebook
             a(href='/auth/google')
                 i.fa.fa-google-plus.fa-lg
-                |         log in with Google
+                |         {{ 'Login_in_with' | translate }} Google
         script.
             $(document.forms['login-form']).on('submit', function () {
                 var form = $(this);
@@ -40,7 +40,7 @@ block content
                     },
                     statusCode: {
                         200: function () {
-                            form.html('Вы вошли в кабинет').addClass('alert-success');
+                            form.html('You are in!').addClass('alert-success');
                             window.location.href = '/cabinet';
                         },
                         403: function (jqXHR) {

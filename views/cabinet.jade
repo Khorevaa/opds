@@ -2,50 +2,50 @@ extends layout
 
 block content
     .btnDiv.col-xs-4.col-sm-4.sidebar-offcanvas-left
-        h1= title
-        p Добро пожаловать, #{user}
+        h1 {{ 'Your_cabinet' | translate }}
+        p {{ 'Welcome' | translate }}, #{user}
         br
         br
         br
-        p Сегодня: {{today | date:'dd/MM/yyyy'}}
+        p {{ 'Today' | translate }}: {{today | date:'dd/MM/yyyy'}}
         br
-        p {{summary}}
+        p {{ 'Count_books' | translate }}: {{summary}}
     .btnDiv.col-xs-4.col-sm-4.sidebar-offcanvas-centr
-        h3.text-center Поиск книг в базе
+        h3.text-center {{ 'Search_in_DataBase' | translate }}
         .row
             .col-md-12
                 .input-group
                     .input-group-btn.search-panel
-                        select.SelectField.form-control(ng-model='selectedField', ng-options='field.name for field in fields')
-                            option(value="" data-hidden="true" class="ddl-title") Искать..
-                    input.form-control(type='text', placeholder='Поиск...', ng-model='searchValue')
+                        select.SelectField.form-control(ng-model='selectedField', ng-options='field.name | translate for field in fields ')
+                            option(value="" data-hidden="true" class="ddl-title") {{ 'Find' | translate }}...
+                    input.form-control(type='text', placeholder='...', ng-model='searchValue')
                     span.input-group-btn
                         button.btn.btn-default(type='button' ng-click="searchBooks(searchValue, selectedField.value)")
                             span.glyphicon.glyphicon-search
-        h3.text-center или
+        h3.text-center {{ 'OR' | translate }}
         .row
             .col-md-12
-                button#getBooksBtn(class='btn btn-info' ng-click="getNewBooks()") Получить новейшие 100 книг из базы
+                button#getBooksBtn(class='btn btn-info' ng-click="getNewBooks()") {{ 'Get_newest_100' | translate }}
     .btnDiv.col-xs-4.col-sm-4.sidebar-offcanvas-right
-        h4.text-center Фильтр книг по категориям
+        h4.text-center {{ 'Book_filter_by_category' | translate }}
         .list-group
             .list-group-item.text-center
                 form
-                    input.form-control(type='text', placeholder='Фильтр...', ng-model='searchCategory')
-        h4.text-center Фильтр книг по авторам
+                    input.form-control(type='text', placeholder='...', ng-model='searchCategory')
+        h4.text-center {{ 'Book_filter_by_author' | translate }}
             .list-group
                 .list-group-item.text-center
                     form
-                        input.form-control(type='text', placeholder='Фильтр...', ng-model='searchAuthor')
+                        input.form-control(type='text', placeholder='...', ng-model='searchAuthor')
     br
     br
     table#booksTable.col-lg-12
         thead
-            th {{newBooksHead.updated}}
-            th {{newBooksHead.title}}
-            th {{newBooksHead.author}}
-            th {{newBooksHead.category}}
-            th {{newBooksHead.description}}
+            th {{newBooksHead.updated | translate }}
+            th {{newBooksHead.title | translate }}
+            th {{newBooksHead.author | translate }}
+            th {{newBooksHead.category | translate }}
+            th {{newBooksHead.description | translate }}
             th
         tbody(ng-repeat='book in newBooks | orderBy: "updated" : true | filter: {category: searchCategory} |' +
         ' filter: {author: searchAuthor} | limitTo: 100')
